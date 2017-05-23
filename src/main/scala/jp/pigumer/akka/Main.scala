@@ -1,14 +1,16 @@
 package jp.pigumer.akka
 
 import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
+import akka.stream.{ActorMaterializer, Materializer}
 import akka.stream.scaladsl.{Flow, Sink, Source}
 
 import scala.util.{Failure, Success}
 
 object Main extends App {
 
-  implicit val system = ActorSystem("sandbox")
+  def createActorSystem: ActorSystem = ActorSystem("sandbox")
+
+  implicit val system = createActorSystem
   implicit val meterializer = ActorMaterializer()
   implicit val executeContext = system.dispatcher
 
